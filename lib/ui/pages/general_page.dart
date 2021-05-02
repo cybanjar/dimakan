@@ -40,25 +40,34 @@ class GeneralPage extends StatelessWidget {
                     child: Row(
                       children: [
                         onBackButtonPressed != null
-                            ? Container(
-                                margin: EdgeInsets.only(right: 16),
-                                width: 24,
-                                height: 24,
-                                child:
-                                    Icon(Icons.arrow_back, color: Colors.black))
+                            ? GestureDetector(
+                                onTap: () {
+                                  if (onBackButtonPressed != null) {
+                                    onBackButtonPressed();
+                                  }
+                                },
+                                child: Container(
+                                    margin: EdgeInsets.only(right: 16),
+                                    width: 24,
+                                    height: 24,
+                                    child: Icon(Icons.arrow_back,
+                                        color: Colors.black)),
+                              )
                             : SizedBox(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(title,
-                                style: blackTextFont.copyWith(fontSize: 20)),
-                            Text(subtitle,
-                                style: greyFontStyle.copyWith(fontSize: 16))
+                            Text(title, style: blackTextFont1),
                           ],
                         )
                       ],
                     ),
+                  ),
+                  Container(
+                    height: defaultMargin,
+                    width: double.infinity,
+                    color: "FAFAFC".toColor(),
                   ),
                   child ?? SizedBox()
                 ],

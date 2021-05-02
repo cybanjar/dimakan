@@ -5,6 +5,12 @@ Color greyColor = "A8A8A8".toColor(); // supercharger
 
 const double defaultMargin = 16;
 
-TextStyle blackTextFont = GoogleFonts.openSans().copyWith(color: Colors.black);
+TextStyle blackTextFont1 = GoogleFonts.openSans()
+    .copyWith(color: Colors.black, fontSize: 22, fontWeight: FontWeight.w500);
+
+TextStyle blackTextFont2 = GoogleFonts.openSans()
+    .copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500);
+
+TextStyle blackTextFont3 = GoogleFonts.openSans().copyWith(color: Colors.black);
 
 TextStyle greyFontStyle = GoogleFonts.openSans().copyWith(color: greyColor);
