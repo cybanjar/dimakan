@@ -1,5 +1,5 @@
-import 'package:dimakan/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:dimakan/ui/pages/pages.dart';
 import 'package:get/get.dart';
 
 void main() {
