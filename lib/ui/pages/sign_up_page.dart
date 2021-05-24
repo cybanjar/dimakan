@@ -27,8 +27,7 @@ class _SignUpPageState extends State<SignUpPage> {
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                    image: NetworkImage(
-                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'))),
+                    image: NetworkImage('https://i.imgur.com/ZRnpCD3.jpg'))),
           ),
           Container(
             width: double.infinity,

@@ -31,12 +31,14 @@ class _MainPageState extends State<MainPage> {
                 });
               },
               children: [
-                FoodPage(),
                 Center(
-                  child: Text("order"),
+                  child: FoodPage(),
                 ),
                 Center(
-                  child: Text("user"),
+                  child: OrderHistoryPage(),
+                ),
+                Center(
+                  child: ProfilePage(),
                 )
               ],
             ),

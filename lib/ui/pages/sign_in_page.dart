@@ -6,14 +6,13 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
+  final String iconLock = 'assets/Lock.svg';
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    bool isLoading = false;
-    final String iconLock = 'assets/Lock.svg';
-    // final String dogUrl = 'https://www.svgrepo.com/show/2046/dog.svg';
-
     return GeneralPage(
       title: 'Sign In',
       child: Column(
@@ -76,14 +75,23 @@ class _SignInPageState extends State<SignInPage> {
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: isLoading
-                ? SpinKitDoubleBounce(
-                    size: 45,
-                    color: mainColor,
-                  )
+                ? loadingIndicator
                 : ElevatedButton(
                     child: Text('Login'),
-                    onPressed: () {
-                      Get.to(SignUpPage());
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+
+                      await context.bloc<UserCubit>().signIn(
+                          emailController.text, passwordController.text);
+                      UserState state = context.bloc<UserCubit>().state;
+
+                      if (state is UserLoaded) {
+                        context.bloc<FoodCubit>().getFoods();
+                        context.bloc<TransactionCubit>().getTransaction();
+                        Get.to(MainPage());
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         primary: mainColor,

@@ -10,6 +10,9 @@ class _FoodPageState extends State<FoodPage> {
 
   @override
   Widget build(BuildContext context) {
+    double listitemWidth =
+        MediaQuery.of(context).size.width - 2 * defaultMargin;
+
     return ListView(
       children: [
         Column(
@@ -45,8 +48,8 @@ class _FoodPageState extends State<FoodPage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40),
                         image: DecorationImage(
-                            image: NetworkImage(
-                                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                            image:
+                                NetworkImage('https://i.imgur.com/ZRnpCD3.jpg'),
                             fit: BoxFit.cover)),
                   )
                 ],
@@ -62,13 +65,11 @@ class _FoodPageState extends State<FoodPage> {
                   Row(
                     children: mockFoods
                         .map((e) => Padding(
-                              padding: EdgeInsets.only(
-                                  left: (e == mockFoods.first)
-                                      ? defaultMargin
-                                      : 0,
-                                  right: defaultMargin),
-                              child: FoodCard(e),
-                            ))
+                            padding: EdgeInsets.only(
+                                left:
+                                    (e == mockFoods.first) ? defaultMargin : 0,
+                                right: defaultMargin),
+                            child: FoodCard(e)))
                         .toList(),
                   )
                 ],
@@ -89,25 +90,29 @@ class _FoodPageState extends State<FoodPage> {
                       });
                     },
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
                   Builder(builder: (_) {
-                    String body = (selectedIndex == 0)
-                        ? 'New Taste Body'
+                    List<Food> foods = (selectedIndex == 0)
+                        ? mockFoods
                         : (selectedIndex == 1)
-                            ? 'Popular Body'
-                            : 'Recommended Body';
-                    return Center(
-                      child: Text(
-                        body,
-                        style: blackTextFont2,
-                      ),
+                            ? []
+                            : [];
+                    return Column(
+                      children: foods
+                          .map((e) => Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                    defaultMargin, 0, defaultMargin, 16),
+                                child: FoodListItem(
+                                    food: e, itemWidth: listitemWidth),
+                              ))
+                          .toList(),
                     );
                   })
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: 80,
+            ),
           ],
         )
       ],
